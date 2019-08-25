@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class= "container";>
+            <h2>Register Page</h2>
+
+            <div id="radioButtons">
+                <div class="radio">
+                    <label id="parent"><input type="radio" name="radioRole" onclick="formChange('parent')" checked>Parent</label>
+                </div>
+                <div class="radio">
+                    <label id="school"><input type="radio" name="radioRole" onclick="formChange('school')">School</label>
+                </div>
+            </div>
+
+            <form>
+                <div class="form-group" id="childAge">
+                    <label for="kidAge" id="ageLabel">How old is your child?</label>
+                    <input type="text" class="form-control" id="kidAge" placeholder="Child Age">
+                </div>
+                <div class="form-group" id="parentLocation">
+                    <label for="location" id="locationLabel"> Where are you located?</label>
+                    <input type="text" class="form-control" id="location" placeholder="Location">
+                </div>
+                <div class="form-group" id="interest">
+                    <label for="sel1" id="interestLabel">What is your child's interest?</label>
+                    <select class="form-control" id="sel1">
+                        <option>Basketball</option>
+                        <option>Theater</option>
+                        <option>STEM Programs</option>
+                        <option>Spelling Bee</option>
+                    </select>
+                </div>
+                <div class="form-group" id="phoneNumber">
+                    <label for="phone" id="phoneLabel"> What is your phone number?</label>
+                    <input type="text" class="form-control" id="phone" placeholder="xxx-xxx-xxxx">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="pageRouting('radioRole')">Submit</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        function formChange(x){
+            if(x == 'school')
+            {
+                var select = document.getElementById("sel1");
+                document.getElementById("ageLabel").innerHTML = "What is your school's name?";
+                document.getElementById("kidAge").placeholder = "School Name";
+                document.getElementById("interestLabel").innerHTML = "What education level are you?"
+                select[0].innerHTML = "Elementary School";
+                select[1].innerHTML = "Middle School";
+                select[2].innerHTML = "High School";
+                select[3].innerHTML = "Other";
+                document.getElementById("phoneLabel").innerHTML = "What is your schools phone number?";
+            }
+            else
+            {
+                var select = document.getElementById("sel1");
+                document.getElementById("ageLabel").innerHTML = "How old is your child?";
+                document.getElementById("kidAge").placeholder = "Child Age";
+                document.getElementById("interestLabel").innerHTML = "What is your child's interest?"
+                select[0].innerHTML = "Basketball";
+                select[1].innerHTML = "Theater";
+                select[2].innerHTML = "STEM Programs";
+                select[3].innerHTML = "Spelling Bee";
+                document.getElementById("phoneLabel").innerHTML = "What is your phone number?";
+            }
+        }
+
+        function pageRouting(name)
+        {
+            var radioButtons = document.getElementsByName(name);
+            if(radioButtons[0].checked){
+                location.href = "SchoolSearch.html";
+            }
+            else{
+                var school = document.getElementById("kidAge").value;
+                var phone = document.getElementById("phone").value;
+                var classification = document.getElementById("sel1").value;
+                var queryString = "?para1=" + school + "&para2=" + phone + "&para3=" + classification;
+                location.href = "SchoolProfile.html" + queryString;
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFFFE0;
+        }
+        .container {
+            text-align: center;
+        }
+        #radioButtons{
+            float: right;
+        }
+        .radio{
+            display: inline;
+        }
+        label{
+            float: left;
+        }
+        #parent, #school{
+            margin-right: .5em;
+        }
+    </style>
+</html>

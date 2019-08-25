@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+
+    </head>
+    <body onload="whosProfile()">
+        <div class="container">
+            <h3>Your Profile</h3>
+            <br>
+            <label class="unchanging">Your School Name:</label>
+            <label id="schoolName"></label>
+            <br>
+            <label class="unchanging">Your Phone Number:</label>
+            <label id="phoneNumber"></label>
+            <br>
+            <label class="unchanging">Your Classification:</label>
+            <label id="classification">asdf</label>
+        </div>
+    </body>
+    <script>
+        function whosProfile(){
+            var queryString = decodeURIComponent(window.location.search);
+            queryString = queryString.substring(7);
+            queryString = queryString.split("&para2=");
+            var usables = queryString[1].split("&para3=");
+            document.getElementById("schoolName").innerHTML = queryString[0];
+            document.getElementById("phoneNumber").innerHTML = usables[0];
+            document.getElementById("classification").innerHTML = usables[1];
+        }
+    </script>
+    <style>
+        body {
+        background-color: #FFFFE0;
+        }
+        .container {
+            text-align: center;
+        }
+        label{
+            float: left;
+            padding-right: .75em;
+        }
+    </style>
+</html>
